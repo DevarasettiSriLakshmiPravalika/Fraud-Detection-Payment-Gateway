@@ -17,3 +17,7 @@ spring:
 
 server:
   port: 8080
+
+jwt:
+  secret: averylongsecretkeythatisatleast256bitslongforhs256!
+  expiration: 86400000 # 24 hours
