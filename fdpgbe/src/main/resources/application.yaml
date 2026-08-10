@@ -2,22 +2,22 @@ spring:
   application:
     name: fdpg-backend
   datasource:
-    url: jdbc:postgresql://localhost:5432/fdpg
-    username: postgres
-    password: password
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/fdpg}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}
     properties:
       hibernate:
-        format_sql: true
+        format_sql: ${SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL:true}
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 jwt:
-  secret: averylongsecretkeythatisatleast256bitslongforhs256!
-  expiration: 86400000 # 24 hours
+  secret: ${JWT_SECRET:averylongsecretkeythatisatleast256bitslongforhs256!}
+  expiration: ${JWT_EXPIRATION:86400000}
