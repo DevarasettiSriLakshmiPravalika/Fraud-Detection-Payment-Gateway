@@ -1,0 +1,349 @@
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.sentLabel     { color: #EF4444; font-weight: 600; }
+.receivedLabel { color: var(--accent); font-weight: 600; }
+
+.newPaymentBtn {
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.newPaymentBtn:hover {
+  background: var(--accent-hover);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Controls Row */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 1rem;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab:hover { color: var(--text-primary); }
+
+.tabActive {
+  background: var(--primary);
+  color: white;
+}
+
+/* Search */
+.searchWrapper {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.65rem 1rem 0.65rem 2.5rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.searchInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+}
+
+/* Table */
+.tableCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.tr { transition: background 0.12s; }
+.tr:not(:last-child) { border-bottom: 1px solid var(--border-color); }
+.tr:hover { background: rgba(16,185,129,0.02); }
+
+.td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+}
+
+/* Direction Type Badge */
+.typeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.typeSent {
+  background: rgba(239,68,68,0.1);
+  color: #DC2626;
+}
+
+.typeReceived {
+  background: rgba(16,185,129,0.1);
+  color: var(--accent);
+}
+
+/* Other cell styles */
+.txId {
+  font-family: monospace;
+  font-size: 0.78rem;
+  background: var(--bg-color);
+  padding: 3px 7px;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.receiverName {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.accountNo {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #6366F1;
+  font-family: monospace;
+}
+
+.account {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* Signed amounts */
+.amountDebit {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #EF4444;
+}
+
+.amountCredit {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.date {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.statusBadge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.12);
+  color: #2563EB;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.viewBtn {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.viewBtn:hover { color: var(--accent-hover); }
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.pageBtn {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pageBtn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pageBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.pageInfo {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* States */
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.errorState {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #DC2626;
+  padding: 1.25rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 5rem 2rem;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+}
+
+.emptyState h3 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+.emptyState p { font-size: 0.875rem; }
+
+.emptyLink {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 800px) {
+  .table { display: block; overflow-x: auto; white-space: nowrap; }
+  .pageHeader { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .controlsRow { flex-direction: column; align-items: stretch; }
+}

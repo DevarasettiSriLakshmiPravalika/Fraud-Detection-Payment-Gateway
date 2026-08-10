@@ -34,6 +34,7 @@ const Login = () => {
       if (response.data.success) {
         login(response.data.data.token, {
           username: response.data.data.username,
+          email: response.data.data.email,
           role: response.data.data.role
         });
         navigate(from, { replace: true });
