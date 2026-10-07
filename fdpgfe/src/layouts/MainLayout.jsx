@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { LogOut, User } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { LogOut, User, CreditCard, List, LayoutDashboard, UserCircle } from 'lucide-react';
+import { useNavigate, NavLink } from 'react-router-dom';
+import styles from './MainLayout.module.css';
 
 const MainLayout = ({ children }) => {
   const { user, logout } = useContext(AuthContext);
@@ -13,27 +14,72 @@ const MainLayout = ({ children }) => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-color)', display: 'flex', flexDirection: 'column' }}>
-      <header style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)', padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--primary)' }}>FDPG</div>
+    <div className={styles.root}>
+      <header className={styles.header}>
+        <div className={styles.logo}>
+          <span className={styles.logoAccent}>FD</span>PG
+        </div>
+
+        <nav className={styles.nav}>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            id="nav-dashboard"
+          >
+            <LayoutDashboard size={16} />
+            Dashboard
+          </NavLink>
+          <NavLink
+            to="/payments/new"
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            id="nav-make-payment"
+          >
+            <CreditCard size={16} />
+            Make Payment
+          </NavLink>
+          <NavLink
+            to="/payments"
+            end
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            id="nav-history"
+          >
+            <List size={16} />
+            History
+          </NavLink>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            id="nav-profile"
+          >
+            <UserCircle size={16} />
+            Profile
+          </NavLink>
+        </nav>
+
         {user && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
-              <User size={16} />
-              <span>{user.username}</span>
-              <span style={{ backgroundColor: '#E2E8F0', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: '600', color: 'var(--primary)' }}>{user.role}</span>
+          <div className={styles.userArea}>
+            <div className={styles.userInfo}>
+              <div className={styles.avatar}>
+                {user.username?.charAt(0).toUpperCase()}
+              </div>
+              <div className={styles.userMeta}>
+                <span className={styles.userName}>{user.username}</span>
+                <span className={styles.userEmail}>{user.email}</span>
+              </div>
             </div>
-            <button 
+            <button
               onClick={handleLogout}
-              style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', fontSize: '0.875rem' }}
+              className={styles.logoutBtn}
+              id="logout-btn"
+              title="Logout"
             >
               <LogOut size={16} />
-              Logout
             </button>
           </div>
         )}
       </header>
-      <main style={{ flex: 1, padding: '2rem' }}>
+
+      <main className={styles.main}>
         {children}
       </main>
     </div>

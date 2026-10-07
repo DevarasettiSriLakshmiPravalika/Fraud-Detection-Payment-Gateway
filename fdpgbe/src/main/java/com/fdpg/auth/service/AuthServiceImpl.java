@@ -1,5 +1,6 @@
 package com.fdpg.auth.service;
 
+import com.fdpg.account.service.AccountService;
 import com.fdpg.auth.dto.LoginRequest;
 import com.fdpg.auth.dto.LoginResponse;
 import com.fdpg.auth.dto.RegisterRequest;
@@ -28,6 +29,7 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final AccountService accountService;
 
     @Override
     public ApiResponse<Void> register(RegisterRequest request) {
@@ -47,7 +49,10 @@ public class AuthServiceImpl implements AuthService {
                 .enabled(true)
                 .build();
 
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        // Automatically create a virtual account with ₹5000 for the new user
+        accountService.createAccountForUser(savedUser);
 
         return ApiResponse.success("User registered successfully", null);
     }
@@ -63,12 +68,16 @@ public class AuthServiceImpl implements AuthService {
 
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String role = userDetails.getAuthorities().iterator().next().getAuthority();
-            
+
             String jwt = jwtUtil.generateToken(userDetails, role);
+
+            // Fetch full user to include email in response
+            User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow();
 
             LoginResponse loginResponse = LoginResponse.builder()
                     .token(jwt)
                     .username(userDetails.getUsername())
+                    .email(user.getEmail())
                     .role(role)
                     .build();
 
